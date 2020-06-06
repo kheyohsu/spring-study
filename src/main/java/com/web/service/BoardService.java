@@ -15,15 +15,15 @@ public class BoardService {
 	
 	public BoardService(BoardRepository boardRepository) {
 		this.boardRepository = boardRepository;
+	}
 		
-		public Page<Board> findBoardList(Pageable pageable) {
-			pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, 
-					pageable.getPageSize());
-			return boardRepository.findAll(pageable);
-		}
-		
-		public Board findBoardByIdx(Long idx) {
-			return boardRepository.findById(idx).orElse(new Board());
-		}
+	public Page<Board> findBoardList(Pageable pageable) {
+		pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, 
+				pageable.getPageSize());
+		return boardRepository.findAll(pageable);
+	}
+	
+	public Board findBoardByIdx(Long idx) {
+		return boardRepository.findById(idx).orElse(new Board());
 	}
 }
