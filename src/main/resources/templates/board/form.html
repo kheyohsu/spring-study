@@ -6,14 +6,13 @@
 </head>
 <body>
 
-	<div th:replace="layout/header::header"></div>
 	
 	<div>
 		<div>
 			<h1>게시글 등록</h1>
 		</div>
 		<br/>
-		<input id="board_idx" type="hidden" th:value="${board?.idx"}/>
+		<input id="board_idx" type="hidden" th:value="${board?.idx}"/>
 		<table>
 			<tr>
 				<th style="padding:13px 0 0 15px">게시판 선택</th>
@@ -66,12 +65,11 @@
 		</div>
 		<div>
 			<button th:if="!${board?.idx}" type="button" id="insert">저장</button>
-			<button th:if="!${board?.idx}" type="button" id="update">수정</button>
-			<button th:if="!${board?.idx}" type="button" id="delete">삭제</button>
+			<button th:if="${board?.idx}" type="button" id="update">수정</button>
+			<button th:if="${board?.idx}" type="button" id="delete">삭제</button>
 		</div>
 	</div>
 	
-	<div th:replace="layout/footer::footer"></div>
 
 </body>
 </html>

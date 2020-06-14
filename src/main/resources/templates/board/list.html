@@ -6,7 +6,6 @@
 </head>
 <body>
 
-	<div th:replace="layout/header::header"></div>
 	
 	<div>
 		<div>
@@ -41,27 +40,33 @@
 		</div>
 		
 		<nav aria-label="Page navigation" style="text-align:center;">
-			<ul th:with="startNumber=${T(math).floor(boardList.number/10)}*10+1, 
+			<ul style="list-style:none; margin:0;padding:0;" th:with="startNumber=${T(Math).floor(boardList.number/10)}*10+1, 
 			endNumber=(${boardList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : 
-			${boardLIst.totalPages}">
-				<li th:style="${boardList.first} ? 'display:none'">
+			${boardList.totalPages}">
+				<li style="float: left;border : 1;padding: 0 0 0 0;">
+					<a href="/board/list?page=1">&laquo;</a>
+				</li>
+				<li th:style="${boardList.first} ? 'display:none'" style="float: left;border : 1;padding: 0 0 0 0;">
 					<a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
 				</li>
-				<li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number}+1) ? 'active'">
+				<li style="float: left;border : 1;padding: 0 0 0 0;" th:each="page : ${#numbers.sequence(startNumber, endNumber)}" 
+				th:class="(${page} == ${boardList.number}+1) ? 'active'">
 					<a th:href="@{/board/list(page=${page})}" th:text="${page}">
 						<span></span>
 					</a>
 				</li>
-				<li th:style="${boardList.last} ? 'display:none">
+				<li style="float: left;border : 1;padding: 0 0 0 0;" th:style="${boardList.last} ? 'display:none'">
 					<a th:href="@{/board/list(page=${boardList.number}+2)}">&rsaquo;</a>
 				</li>
-				<li>
+				<li style="float: left;border : 1;padding: 0 0 0 0;">
 					<a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a>
 				</li>
 			</ul>
 		</nav>
 		
 	</div>
+	
+	
 
 </body>
 </html>
